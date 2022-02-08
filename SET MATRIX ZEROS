@@ -1,0 +1,43 @@
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        is_col = False
+        is_row = False
+        
+		# 1 we write this to see if any row from the begining as a zero
+        for i in range(len(matrix[0])):
+            if matrix[0][i] == 0:
+                is_col = True
+        
+		# 2 we write this to see if any column from the begining as a zero
+        for i in range(len(matrix)):
+            if matrix[i][0] == 0:
+                is_row = True
+        
+		# 3 here we start from (1,1) and check if the matrix here has any 
+        # zero and store that in 
+		# their respective row and col
+        for i in range(len(matrix)):
+            for j in range(1, len(matrix[0])):
+                if matrix[i][j] == 0:
+                    matrix[i][0] = 0 #col
+                    matrix[0][j] = 0 #row
+        
+        # 4 based on the step #3 we set the values in each row and col 
+        # to zero
+        for i in range(1, len(matrix)):
+            for j in range(1, len(matrix[0])):
+                if not matrix[i][0] or not matrix[0][j]:
+                    matrix[i][j] = 0
+        
+		# 5
+        if is_row:
+            for i in range(len(matrix)):
+                matrix[i][0] = 0
+        
+		# 6
+        if is_col:
+            for i in range(len(matrix[0])):
+                matrix[0][i] = 0
