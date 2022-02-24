@@ -1,0 +1,13 @@
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        visited=set()
+        currA,currB=headA,headB
+        while currA:
+            visited.add(currA)
+            currA=currA.next
+        while currB:
+            if currB in visited:
+                return currB
+            currB=currB.next
+        return None
+        
