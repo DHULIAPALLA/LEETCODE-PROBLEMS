@@ -1,0 +1,32 @@
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head:
+            return head
+        
+        
+        dummy = head
+        n = 0
+        while dummy:
+            n += 1
+            dummy = dummy.next
+        
+        
+        k = k%n
+        if not k:
+            return head
+        
+    
+        for i in range(k):
+            temp = head.next
+            prev = head
+            while temp.next:
+                temp = temp.next
+                prev = prev.next
+                
+            
+            nn = ListNode(temp.val)
+            prev.next = None
+            nn.next = head
+            head = nn
+        return head
+        
