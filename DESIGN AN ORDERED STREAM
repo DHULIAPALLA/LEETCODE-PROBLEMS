@@ -1,0 +1,15 @@
+class OrderedStream:
+
+    def __init__(self, n: int):
+        self.values=[None for _ in range(n)]
+        self.needful=0
+        
+
+    def insert(self, idKey: int, value: str) -> List[str]:
+        self.values[idKey-1]=value
+        res=[]
+        while self.needful<len(self.values) and self.values[self.needful] is not None:
+            res+=[self.values[self.needful]]
+            self.needful+=1
+        return res
+        
